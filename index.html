@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Batteries in Space | Organised by Dr Yige Sun</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+        /* 基础重置与色彩变量 */
+        :root {
+            --space-dark: #070913;
+            --space-light: #151828;
+            --neon-green: #00FF88;
+            --text-main: #E2E8F0;
+            --text-muted: #94A3B8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--space-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .highlight { color: var(--neon-green); }
+
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px 5%;
+            background: rgba(7, 9, 19, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+        }
+        .logo { font-size: 1.2rem; font-weight: 600; font-family: 'Playfair Display', serif; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--neon-green); }
+
+        /* 按钮样式 */
+        .btn {
+            background-color: var(--neon-green);
+            color: var(--space-dark);
+            padding: 10px 24px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* 首页 Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            background: linear-gradient(rgba(7,9,19,0.7), rgba(7,9,19,0.9)), url('Figure with high resolution.png') center/cover;
+            text-align: left;
+        }
+        .hero-content { max-width: 900px; }
+        .hero-content h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero-content p.subtitle { font-size: 1.5rem; margin-bottom: 30px; color: var(--text-muted); }
+        .meta-info {
+            font-size: 1.1rem; margin-bottom: 40px; display: flex; flex-direction: column; gap: 15px;
+        }
+        .meta-info span { display: flex; align-items: center; gap: 10px; }
+
+        /* 通用 Section 样式 */
+        section { padding: 80px 10%; }
+        .section-title { font-size: 2.5rem; margin-bottom: 50px; text-align: center; }
+
+        /* 网格系统 (Speakers & Committee) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: var(--space-light);
+            padding: 40px 30px 30px 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s, border 0.3s;
+            position: relative;
+            text-align: center;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-green);
+        }
+        
+        /* 头像基础样式 */
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #2A2F45; 
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2394A3B8"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>'); 
+            background-size: 60%;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 3px solid var(--space-dark);
+            margin: -80px auto 20px auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        
+        /* 赋予真实照片时的覆盖样式 */
+        .avatar.has-photo {
+            background-size: cover; 
+            background-color: transparent;
+        }
+
+        .card h3 { color: var(--neon-green); margin-bottom: 5px; font-size: 1.4rem; }
+        .card .role { font-size: 1rem; color: #fff; font-weight: 600; margin-bottom: 10px; }
+        .card .affiliation { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 5px;}
+        
+        /* 虚线边框用于 TBA 占位卡片 */
+        .card.tba {
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            background: transparent;
+        }
+        .card.tba:hover {
+            border-color: rgba(0, 255, 136, 0.5);
+        }
+        .card.tba .avatar {
+            border-color: var(--space-light);
+            opacity: 0.6;
+        }
+
+        /* Agenda 样式 */
+        .agenda-item {
+            border-left: 3px solid var(--neon-green);
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Sponsors 样式 (Updated to fix distortion and visual balance) */
+        .partner-section { margin-bottom: 50px; }
+        .logo-flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 60px; /* Gap between slots */
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        /* Logo Slot: Fixed-size white containers for visual balance */
+        .logo-slot {
+            background: #ffffff;
+            width: 350px; /* Equal width for the CONTAINERS */
+            height: 180px; /* Increased height for larger visual presence */
+            border-radius: 8px;
+            padding: 20px; /* Internal padding */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* The Actual Logo Image: Stays within slot, aspect ratio preserved */
+        .partner-logo {
+            max-width: 100%; /* Image will not overflow width */
+            max-height: 100%; /* Image will not overflow height */
+            width: auto; /* Let image dictate its width based on aspect ratio */
+            height: auto; /* Let image dictate its height based on aspect ratio */
+            object-fit: contain; /* EXTRA GUARANTEE: Never stretch, only scale */
+        }
+
+        /* Footer */
+        footer {
+            background: #000; padding: 40px 10%; text-align: center; color: var(--text-muted); font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><span class="highlight">Circular</span>SpaceBatt</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#speakers">Speakers</a>
+            <a href="#agenda">Agenda</a>
+            <a href="#committee">Committee</a>
+            <a href="#sponsors">Sponsors</a>
+            <a href="#register" class="btn">Register Interest</a>
+        </div>
+    </nav>
+
+    <header id="hero">
+        <div class="hero-content">
+            <h1>Circular Batteries <br>in Space</h1>
+            <p class="subtitle">Enabling a Sustainable Space Economy</p>
+            <div class="meta-info">
+                <span>🗓 <strong>Date:</strong> 22nd June 2026</span>
+                <span>📍 <strong>Venue:</strong> Tanner Room, Linacre College, University of Oxford</span>
+            </div>
+            <a href="#register" class="btn">Request Invitation</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2 class="section-title">The <span class="highlight">Mission</span></h2>
+        
+        <div style="max-width: 900px; margin: 0 auto; color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
+            
+            <p style="margin-bottom: 20px;">
+                Space sustainability has become a critical global concern. With active satellites projected to reach between <strong>60,000 and 100,000 by 2030</strong>, the rapid expansion in Low Earth Orbit (LEO) creates unprecedented challenges regarding orbital congestion and debris mitigation.
+            </p>
+            
+            <p style="margin-bottom: 30px;">
+                Crucially, abandoned batteries are not just passive junk; they are active threats. Historically, <strong>30% to 40% of accidental fragmentation events</strong> in orbit have been linked to energy system failures. Given that batteries account for 10% to 20% of a spacecraft’s dry mass, leaving them as "zombie" mass represents a massive loss of embedded energy and material investment.
+            </p>
+
+            <h3 style="color: var(--text-main); margin-bottom: 15px; font-size: 1.4rem; border-left: 3px solid var(--neon-green); padding-left: 15px;">Advancing Circularity & the ISAM Economy</h3>
+            <p style="margin-bottom: 30px;">
+                Addressing these risks requires a paradigm shift from "disposable" hardware to sustainable, circular design. This workshop explores systems designed for reuse, repair, and material recovery. This shift aligns with the emerging <strong>In-space Servicing, Assembly, and Manufacturing (ISAM)</strong> market, projected to reach $14.3 billion by 2030. Enabling in-orbit battery replacement could extend the functional life of billion-dollar assets by 3 to 5 years.
+            </p>
+
+            <h3 style="color: var(--text-main); margin-bottom: 15px; font-size: 1.4rem; border-left: 3px solid var(--neon-green); padding-left: 15px;">A Cross-Disciplinary Dialogue</h3>
+            <p style="margin-bottom: 20px;">Solving the battery circularity challenge requires a complex interplay of:</p>
+            <ul style="list-style-type: none; padding: 0; margin-bottom: 40px;">
+                <li style="margin-bottom: 12px; background: var(--space-light); padding: 15px; border-radius: 6px;">
+                    <strong class="highlight">⚙️ Technical Pathways:</strong> Design-for-disassembly, robotic refueling/servicing interfaces, and modular energy storage.
+                </li>
+                <li style="margin-bottom: 12px; background: var(--space-light); padding: 15px; border-radius: 6px;">
+                    <strong class="highlight">⚖️ Policy & Governance:</strong> New regulatory frameworks for orbital resource management and "Right to Repair" in space.
+                </li>
+                <li style="margin-bottom: 12px; background: var(--space-light); padding: 15px; border-radius: 6px;">
+                    <strong class="highlight">📈 Economic Incentives:</strong> Funding models from national research councils, space agencies, and private sustainability programs.
+                </li>
+            </ul>
+
+        </div>
+    </section>
+
+    <section id="speakers" style="background-color: var(--space-light); padding-top: 100px;"> 
+        <h2 class="section-title">Keynote <span class="highlight">Speakers</span></h2>
+        <div class="grid" style="margin-top: 50px;">
+            <div class="card">
+                <div class="avatar has-photo" style="background-image: url('Martin-photo.jpg');"></div>
+                <h3>Martin Freer</h3>
+                <div class="role">Chief Executive Officer</div>
+                <div class="affiliation">The Faraday Institution</div>
+            </div>
+            <div class="card">
+                <div class="avatar has-photo" style="background-image: url('Mike-photo.jpg');"></div>
+                <h3>Dr. Mike Curtis-Rouse</h3>
+                <div class="role">Head of IOSM</div>
+                <div class="affiliation">Satellite Applications Catapult</div>
+            </div>
+            
+            <div class="card tba">
+                <div class="avatar"></div>
+                <h3 style="color: rgba(255,255,255,0.7);">To Be Announced</h3>
+                <div class="role">Senior Representative</div>
+                <div class="affiliation">National Physical Laboratory (NPL)</div>
+            </div>
+            <div class="card tba">
+                <div class="avatar"></div>
+                <h3 style="color: rgba(255,255,255,0.7);">To Be Announced</h3>
+                <div class="role">Academic Lead</div>
+                <div class="affiliation">Robotics and Automation</div>
+            </div>
+            <div class="card tba">
+                <div class="avatar"></div>
+                <h3 style="color: rgba(255,255,255,0.7);">To Be Announced</h3>
+                <div class="role">Expert / Thought Leader</div>
+                <div class="affiliation">Space Economy</div>
+            </div>
+            <div class="card tba">
+                <div class="avatar"></div>
+                <h3 style="color: rgba(255,255,255,0.7);">To Be Announced</h3>
+                <div class="role">Legal Scholar / Expert</div>
+                <div class="affiliation">Space Law</div>
+            </div>
+            <div class="card tba">
+                <div class="avatar"></div>
+                <h3 style="color: rgba(255,255,255,0.7);">To Be Announced</h3>
+                <div class="role">Policy & Governance</div>
+                <div class="affiliation">International Space Agencies</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="agenda">
+        <h2 class="section-title">Tentative <span class="highlight">Program</span></h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="agenda-item">
+                <h3 style="margin-bottom: 5px;">09:30 - Morning Keynotes</h3>
+                <p class="text-muted">The shift towards circularity in orbital assets and advanced battery chemistries.</p>
+            </div>
+            <div class="agenda-item">
+                <h3 style="margin-bottom: 5px;">11:00 - Interactive Panel (Facilitated)</h3>
+                <p class="text-muted">Identifying technical barriers to in-orbit battery dismantling and recycling.</p>
+            </div>
+            <div class="agenda-item">
+                <h3 style="margin-bottom: 5px;">14:00 - Policy Workshop</h3>
+                <p class="text-muted">Drafting the foundations for international standards and space resource recovery frameworks.</p>
+            </div>
+            <div class="agenda-item">
+                <h3 style="margin-bottom: 5px;">16:00 - Synthesis & Closing</h3>
+                <p class="text-muted">Consolidating insights for the formal Concept Paper and Policy Brief.</p>
+            </div>
+            <p style="text-align: center; margin-top: 40px; color: var(--text-muted); font-style: italic;">
+                *Full detailed schedule is subject to final confirmation.
+            </p>
+        </div>
+    </section>
+
+    <section id="committee" style="background-color: var(--space-light); padding-top: 100px;">
+        <h2 class="section-title">Organising <span class="highlight">Committee</span></h2>
+        <div class="grid" style="margin-top: 50px;">
+            <div class="card" style="border-top: 3px solid var(--neon-green);">
+                 <div class="avatar has-photo" style="background-image: url('Yige-photo.jpg');"></div>
+                <h3>Dr Yige Sun</h3>
+                <div class="role">Lead Organiser & Chair</div>
+                <div class="affiliation">
+                    Research Fellow, Linacre College<br>
+                    Department of Materials, University of Oxford<br>
+                    The Faraday Institution
+                </div>
+            </div>
+            <div class="card">
+                 <div class="avatar has-photo" style="background-image: url('Oguz-photo.jpg');"></div>
+                <h3>Dr Oguz Karasu</h3>
+                <div class="role">Strategic Partnerships Advisor</div>
+                <div class="affiliation">
+                    Saïd Business School<br>
+                    University of Oxford
+                </div>
+            </div>
+            <div class="card tba">
+                 <div class="avatar"></div>
+                <h3 style="color: rgba(255,255,255,0.7);">To Be Confirmed</h3>
+                <div class="role">Lead Facilitator</div>
+                <div class="affiliation">
+                    <em>Expert facilitator bridging aerospace engineering, policy, and materials science.</em>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sponsors">
+        <h2 class="section-title">Sponsored <span class="highlight">By</span></h2>
+
+        <div class="partner-section">
+            <div class="logo-flex-container">
+                
+                <div class="logo-slot">
+                    <img src="royce-logo.png" alt="Henry Royce Institute" class="partner-logo">
+                </div>
+                
+                <div class="logo-slot">
+                    <img src="faraday-logo.png" alt="The Faraday Institution" class="partner-logo">
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="register" style="padding-top: 40px;">
+        <div style="background: linear-gradient(135deg, var(--space-light) 0%, rgba(0,255,136,0.1) 100%); padding: 40px; border-radius: 8px; text-align: center; max-width: 900px; margin: 0 auto;">
+            <h2 style="font-size: 2rem; margin-bottom: 20px;">Beyond the Discussion: <span class="highlight">Our Deliverables</span></h2>
+            <p style="margin-bottom: 30px; color: var(--text-muted);">
+                Dialogues from this summit will directly inform a peer-reviewed <strong>Concept Paper</strong> and a strategic <strong>Policy Brief</strong>.
+            </p>
+            <form style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <input type="email" placeholder="Enter your academic/work email" style="padding: 12px 20px; width: 300px; border-radius: 4px; border: none; outline: none; font-family: 'Inter', sans-serif;">
+                <button type="submit" class="btn" style="border-radius: 4px;">Request Invitation & Updates</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 CircularSpaceBatt.com. Hosted at Linacre College, Oxford.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Enabling a Sustainable Space Economy</p>
+    </footer>
+
+</body>
+</html>
