@@ -48,13 +48,15 @@
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px; margin-bottom: 60px; }
         .card { background: var(--space-light); padding: 50px 25px 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: center; position: relative; }
-        .card.highlight-card { border-top: 4px solid var(--neon-green); box-shadow: 0 15px 40px rgba(0, 255, 136, 0.1); }
         .avatar { width: 100px; height: 100px; border-radius: 50%; background-color: #2A2F45; background-size: cover; background-position: center; border: 3px solid var(--space-dark); margin: -100px auto 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
         .agenda-item { border-left: 3px solid var(--neon-green); padding-left: 20px; margin-bottom: 30px; }
         .reg-notice { max-width: 850px; margin: 0 auto 40px; padding: 30px; background: rgba(255,255,255,0.03); border-left: 4px solid var(--neon-green); font-size: 0.95rem; }
         .btn { background-color: var(--neon-green); color: var(--space-dark); padding: 12px 28px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; text-decoration: none; transition: 0.3s; display: inline-block; }
         .btn:hover { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); transform: translateY(-2px); }
+
+        .sponsor-box { background: #ffffff; width: 340px; height: 160px; border-radius: 8px; padding: 25px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3); overflow: hidden; }
+        .sponsor-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         .qr-container { margin-top: 30px; text-align: center; }
         .qr-container img { width: 150px; height: 150px; border-radius: 8px; border: 3px solid var(--neon-green); padding: 5px; background: white; transition: transform 0.3s ease; }
@@ -275,10 +277,10 @@
 
     <section id="sponsors">
         <h2 class="section-title">Sponsored <span class="highlight">By</span></h2>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 50px;">
-            <div style="background: #fff; width: 340px; height: 160px; border-radius: 8px; padding: 25px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3);"><img src="royce-logo.png" alt="Henry Royce" style="max-width: 100%; max-height: 100%; object-fit: contain;"></div>
-            <div style="background: #fff; width: 340px; height: 160px; border-radius: 8px; padding: 25px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3);"><img src="faraday-logo.png" alt="Faraday" style="max-width: 100%; max-height: 100%; object-fit: contain;"></div>
-            <div style="background: #fff; width: 340px; height: 160px; border-radius: 8px; padding: 25px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3);"><img src="SAC-logo.png" alt="Satellite Applications Catapult" style="max-width: 100%; max-height: 100%; object-fit: contain;"></div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;">
+            <div class="sponsor-box"><img src="royce-logo.png" alt="Henry Royce"></div>
+            <div class="sponsor-box"><img src="faraday-logo.png" alt="Faraday"></div>
+            <div class="sponsor-box" style="background-color: #ffffff;"><img src="SAC-logo.png" alt="Satellite Applications Catapult"></div>
         </div>
     </section>
 
