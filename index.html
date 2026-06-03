@@ -65,21 +65,51 @@
         footer { background: #000; padding: 60px 10%; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
 
         .country-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-top: 5px;
-    text-transform: uppercase;
-    letter-spacing: 0.05rem;
-}
-.country-badge img {
-    width: 16px;
-    height: 12px;
-    border-radius: 2px;
-}
-        
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+        }
+        .country-badge img {
+            width: 16px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        /* 新增：学院照片画廊 CSS */
+        .college-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+        .college-gallery figure {
+            margin: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        .college-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 4 / 3; /* 保持图片比例一致 */
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .college-gallery img:hover {
+            transform: scale(1.03); /* 鼠标悬停时的轻微放大效果 */
+        }
+        @media (max-width: 768px) {
+            .college-gallery {
+                grid-template-columns: 1fr; /* 手机端单列显示 */
+            }
+        }
     </style>
 </head>
 <body>
@@ -134,7 +164,7 @@
             <div class="dialogue-box"><strong>⚖️ Policy & Governance:</strong> New regulatory frameworks for orbital resource management and "Right to Repair" in space.</div>
             <div class="dialogue-box"><strong>📈 Economic Incentives:</strong> Funding models from national research councils, space agencies, and private sustainability programmes.</div>
 
-            <div class="output-box">
+            <div class="output-box" style="margin-bottom: 0;">
                 <h3 style="margin-top: 0; border: none; padding: 0;">Workshop Outputs</h3>
                 <p>Through your <strong>Expression of Interest (EoI)</strong> and participation, we aim to co-develop:</p>
                 <div class="output-grid">
@@ -143,6 +173,20 @@
                 </div>
             </div>
         </div>
+        
+        <!-- 新增：Keynote 前的学院照片 -->
+        <div class="college-gallery">
+            <figure>
+                <img src="College_1.jpg" alt="Linacre College Venue Photo 1">
+            </figure>
+            <figure>
+                <img src="College_2.jpg" alt="Linacre College Venue Photo 2">
+            </figure>
+        </div>
+        <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; font-style: italic; margin-top: 15px;">
+            The Venue: Linacre College, University of Oxford
+        </p>
+
     </section>
 
     <section id="speakers" style="background-color: var(--space-light);">
@@ -155,28 +199,19 @@
                 <div class="affiliation">The Faraday Institution, UK</div>
             </div>
 
-     <!--        <div class="card">
-                <div class="avatar" style="background-image: url('Lord_David_Willetts_photo.jpg');"></div>
-                <h3 class="highlight">Lord David Willetts</h3>
-                <div class="role">Chair of the Board</div>
-                <div class="affiliation">UK Space Agency (UKSA), UK</div>
-            </div>
-
-     -->
-                        <div class="card">
+            <div class="card">
                 <div class="avatar" style="background-image: url('Adam-photo.jpg');"></div>
                 <h3 class="highlight">Dr. Adam Mitchell</h3>
                 <div class="role">Materials & Processes Evaluation Engineer</div>
                 <div class="affiliation">European Space Agency (ESA), EU</div>
             </div>
             
-<div class="card">
+            <div class="card">
                 <div class="avatar" style="background-image: url('Laura-photo.jpg');"></div>
                 <h3 class="highlight">Dr. Laura Lander</h3>
                 <div class="role">Battery Life Cycle Analysis</div>
                 <div class="affiliation">King's College London (KCL), UK</div>
             </div>
-
 
             <div class="card">
                 <div class="avatar" style="background-image: url('Rudra-photo.jpg');"></div>
@@ -184,7 +219,6 @@
                 <div class="role">Senior Scientist, Electrochemistry</div>
                 <div class="affiliation">National Physical Laboratory (NPL), UK</div>
             </div>
-
             
             <div class="card">
                 <div class="avatar" style="background-image: url('Mike-photo.jpg');"></div>
@@ -193,15 +227,12 @@
                 <div class="affiliation">Satellite Applications Catapult, UK</div>
             </div>
 
-
             <div class="card">
-    <!-- 如果你有他的头像图片，请替换 'Erik-Kulu-photo.jpg'，如果没有，可以留空 -->
-    <div class="avatar" style="background-image: url('Erik-photo.jpg');"></div>
-    <h3 class="highlight">Erik Kulu</h3>
-    <div class="role">Founder & CEO</div>
-    <div class="affiliation">Moliri, Factories in Space, Estonia</div>
-</div>
-
+                <div class="avatar" style="background-image: url('Erik-photo.jpg');"></div>
+                <h3 class="highlight">Erik Kulu</h3>
+                <div class="role">Founder & CEO</div>
+                <div class="affiliation">Moliri, Factories in Space, Estonia</div>
+            </div>
             
             <div class="card">
                 <div class="avatar" style="background-image: url('Oguz-photo.jpg');"></div>
@@ -236,7 +267,7 @@
         </div>
     </section>
 
-<section id="agenda">
+    <section id="agenda">
         <h2 class="section-title">Tentative <span class="highlight">Programme</span></h2>
         <div style="max-width: 800px; margin: 0 auto;">
             
@@ -255,7 +286,7 @@
                 <p>Presentations and strategic feedback on the draft frameworks from leading experts spanning <strong>battery technology, space systems, robotics, space economy, and space law</strong>. <em>(Includes a mid-morning coffee break and transitions into a networking lunch at 12:30)</em>.</p>
             </div>
             
-<div class="agenda-item">
+            <div class="agenda-item">
                 <h3>13:00 - Plenary Panel Discussion</h3>
                 <p><strong>"Building Cross-Disciplinary Ecosystems"</strong> - A focused dialogue on breaking down silos and establishing practical pathways for cross-sectoral collaboration to achieve orbital circularity. Chaired by <strong>Dr Yige Sun</strong>.</p>
                 
@@ -269,22 +300,12 @@
                         <div style="font-size: 0.85rem; color: var(--text-muted);">University of Surrey, UK</div>
                     </div>
 
-                     <!--<div class="card" style="padding: 40px 20px 20px;">
-                        <div class="avatar"></div>
-                         <h4 style="font-size: 1.1rem; color: var(--neon-green); margin-bottom: 5px;">To Be Announced</h4>
-                        <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-main);">Sennior representitive</div>
-                        <div style="font-size: 0.85rem; color: var(--text-muted);">UKSA, UK</div>
-                   </div>-->
-
-                    
-                   
                   <div class="card" style="padding: 40px 20px 20px;">
                         <div class="avatar" style="background-image: url('Adam-UKSA-photo.jpg');"></div>
                          <h4 style="font-size: 1.1rem; color: var(--neon-green); margin-bottom: 5px;">Prof. Adam Amara</h4>
                         <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-main);">Chief Scientist | Head of School of Mathematics & Physics</div>
                         <div style="font-size: 0.85rem; color: var(--text-muted);">UKSA & University of Surrey, UK</div>
                    </div>
-
 
                     <!-- Panelist 3 (TBA) -->
                     <div class="card" style="padding: 40px 20px 20px;">
@@ -325,8 +346,6 @@
                 <h3>14:00 - Pressure Testing Breakouts</h3>
                 <p>Participants divide into <strong>4 specialized workstreams (Technical, Policy, Economic, and Legal)</strong> to stress-test the draft documents against pre-set challenging scenarios.</p>
             </div>
-            
-
             
            <div class="agenda-item">
                 <h3>16:00 - Closing Remarks & Reflection</h3>
@@ -379,11 +398,8 @@
                 <div class="role">Chair of the Advisory Board</div>
                 <div class="affiliation">The Faraday Institution, UK</div>
             </div>
-
-            
                 
-                <div class="card"><div class="avatar"></div><h3>To Be Announced</h3>
-
+            <div class="card"><div class="avatar"></div><h3>To Be Announced</h3>
                 <div class="role">senior representative</div>
                 <div class="affiliation">UK Space Agency (UKSA), UK</div>
             </div>
@@ -395,7 +411,6 @@
                 <div class="affiliation">European Space Agency (ESA), EU</div>
             </div>
 
-
             <div class="card">
                 <div class="avatar" style="background-image: url('Qiong-photo.jpg');"></div>
                 <h3 class="highlight">Prof. Qiong Cai</h3>
@@ -403,12 +418,12 @@
                 <div class="affiliation">University of Surrey, UK</div>
             </div>
 
-<div class="card">
-    <div class="avatar" style="background-image: url('James-photo.jpg');"></div>
-    <h3 class="highlight">Prof. James Robinson</h3>
-    <div class="role">Associate Professor in Advanced Propulsion</div>
-    <div class="affiliation">Dept. of Chemical Engineering, UCL, UK</div>
-    </div>
+            <div class="card">
+                <div class="avatar" style="background-image: url('James-photo.jpg');"></div>
+                <h3 class="highlight">Prof. James Robinson</h3>
+                <div class="role">Associate Professor in Advanced Propulsion</div>
+                <div class="affiliation">Dept. of Chemical Engineering, UCL, UK</div>
+            </div>
     
             <div class="card"><div class="avatar"></div><h3>To Be Announced</h3><div class="role">Policy Lead</div><div class="affiliation">UN Office for Outer Space Affairs (UNOOSA)</div></div>
         </div>
@@ -429,14 +444,11 @@
         </div>
     </section>
 
-
-<!-- 新增的实用信息区块开始 -->
     <section id="practical-info" style="background-color: var(--space-light);">
         <h2 class="section-title">Practical <span class="highlight">Information</span></h2>
         <div class="content-container">
             <div class="output-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
                 
-                <!-- 住宿信息卡片 -->
                 <div class="dialogue-box" style="margin-bottom: 0;">
                     <h4 style="color: var(--neon-green); font-size: 1.3rem; margin-bottom: 15px;">🏨 Accommodation</h4>
                     <p style="margin-bottom: 15px;">If you wish to stay in Oxford during the workshop, please contact and book your accommodation directly through the following recommended platforms:</p>
@@ -450,7 +462,6 @@
                     </ul>
                 </div>
 
-                <!-- 停车信息卡片 -->
                 <div class="dialogue-box" style="margin-bottom: 0;">
                     <h4 style="color: var(--neon-green); font-size: 1.3rem; margin-bottom: 15px;">🚗 Parking</h4>
                     <p style="margin-bottom: 15px;"><strong>Short Stay:</strong> The nearest parking is located on Mansfield Road; however, please note this is short stay only with a maximum limit of 2 hours.</p>
@@ -460,8 +471,6 @@
             </div>
         </div>
     </section>
-    <!-- 新增的实用信息区块结束 -->
-
     
     <section id="register">
         <h2 class="section-title">Register <span class="highlight">Interest</span></h2>
