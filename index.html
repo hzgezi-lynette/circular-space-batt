@@ -84,9 +84,7 @@
             letter-spacing: 0.05rem;
         }
         .country-badge img {
-            width: 16px;
-            height: 12px;
-            border-radius: 2px;
+            width: 16px; height: 12px; border-radius: 2px;
         }
 
         .college-gallery {
@@ -103,20 +101,39 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
         .college-gallery img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            aspect-ratio: 4 / 3;
-            display: block;
-            transition: transform 0.3s ease;
+            width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 3; display: block; transition: transform 0.3s ease;
         }
-        .college-gallery img:hover {
-            transform: scale(1.03);
-        }
+        .college-gallery img:hover { transform: scale(1.03); }
         @media (max-width: 768px) {
-            .college-gallery {
-                grid-template-columns: 1fr;
-            }
+            .college-gallery { grid-template-columns: 1fr; }
+        }
+
+        /* Added: Funding section styles */
+        .funding-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(0, 255, 136, 0.15);
+            padding: 40px 10%;
+            text-align: center;
+        }
+        .funding-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .funding-logos img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+        .funding-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
         }
     </style>
 </head>
@@ -180,7 +197,7 @@
                 <div class="output-grid">
                     <div class="output-item"><h4>📄 A Concept Paper</h4><p>Defining strategic pathways for battery systems and design-for-serviceability protocols to enable a resilient and repairable orbital infrastructure.</p></div>
                     <div class="output-item"><h4>⚖️ A Policy Briefing</h4><p>Formulating recommendations on funding models, economic opportunities, and regulatory frameworks to catalyze the $14.3B ISAM economy and mitigate orbital risks.</p></div>
-                </div>
+                    </div>
             </div>
         </div>
         
@@ -308,12 +325,12 @@
                         <div style="font-size: 0.85rem; color: var(--text-muted);">University of Surrey, UK</div>
                     </div>
 
-                  <div class="card" style="padding: 40px 20px 20px;">
+                     <div class="card" style="padding: 40px 20px 20px;">
                         <div class="avatar" style="background-image: url('Adam-UKSA-photo.jpg');"></div>
                          <h4 style="font-size: 1.1rem; color: var(--neon-green); margin-bottom: 5px;">Prof. Adam Amara</h4>
                         <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-main);">Chief Scientist | Head of School of Mathematics & Physics</div>
                         <div style="font-size: 0.85rem; color: var(--text-muted);">UKSA & University of Surrey, UK</div>
-                   </div>
+                     </div>
 
                     <div class="card" style="padding: 40px 20px 20px;">
                         <div class="avatar"></div>
@@ -385,13 +402,13 @@
                 <div class="role">Strategic Partnerships Advisor</div>
                 <div class="affiliation">Saïd Business School, Oxford, UK</div>
             </div>
-        </div>
-          <div class="card">
+            <div class="card">
                 <div class="avatar" style="background-image: url('Joanna-photo.jpg');"></div>
                 <h3>Joanna Lopusinska</h3>
                 <div class="role">Workshop Coordinator</div>
                 <div class="affiliation">Department of Materials, Oxford, UK</div>
             </div>
+        </div>
 
         
         <h2 class="section-title" style="margin-top: 80px;">Advisory <span class="highlight">Board</span></h2>
@@ -402,7 +419,7 @@
                 <div class="role">Chair of the Advisory Board</div>
                 <div class="affiliation">The Faraday Institution, UK</div>
             </div>
-                
+            
             <div class="card"><div class="avatar"></div><h3>To Be Announced</h3>
                 <div class="role">senior representative</div>
                 <div class="affiliation">UK Space Agency (UKSA), UK</div>
@@ -428,7 +445,7 @@
                 <div class="role">Associate Professor in Advanced Propulsion</div>
                 <div class="affiliation">Dept. of Chemical Engineering, UCL, UK</div>
             </div>
-    
+        
             <div class="card"><div class="avatar"></div><h3>To Be Announced</h3><div class="role">Policy Lead</div><div class="affiliation">UN Office for Outer Space Affairs (UNOOSA)</div></div>
         </div>
 
@@ -458,12 +475,12 @@
                     <p style="margin-bottom: 15px;">If you wish to stay in Oxford during the workshop, please contact and book your accommodation directly through the following recommended platforms:</p>
                     <ul style="list-style: none; padding-left: 0;">
                         <li style="margin-bottom: 10px;">
-                            🔗 <a href="https://universityclub.ox.ac.uk/accommodation" target="_blank" style="color: #fff; text-decoration: none; border-bottom: 1px solid var(--neon-green); transition: 0.3s;">Oxford University Club</a>
+                             🔗 <a href="https://universityclub.ox.ac.uk/accommodation" target="_blank" style="color: #fff; text-decoration: none; border-bottom: 1px solid var(--neon-green); transition: 0.3s;">Oxford University Club</a>
                         </li>
                         <li>
-                            🔗 <a href="https://www.universityrooms.com/" target="_blank" style="color: #fff; text-decoration: none; border-bottom: 1px solid var(--neon-green); transition: 0.3s;">University Rooms</a>
+                             🔗 <a href="https://www.universityrooms.com/" target="_blank" style="color: #fff; text-decoration: none; border-bottom: 1px solid var(--neon-green); transition: 0.3s;">University Rooms</a>
                         </li>
-                    </ul>
+                        </ul>
                 </div>
 
                 <div class="dialogue-box" style="margin-bottom: 0;">
@@ -486,6 +503,15 @@
                 <img src="QR code for EOI.png" alt="QR Code for EoI Form">
             </div>
         </div>
+    </section>
+
+    <!-- Added: Funding Section with logos and statement -->
+    <section class="funding-section">
+        <div class="funding-logos">
+            <img src="Oxford_logo.png" alt="University of Oxford Logo">
+            <img src="open_logo.jpg" alt="Open Logo">
+        </div>
+        <p class="funding-text">This activity arises from activities funded from the University of Oxford’s allocation from Research England’s Policy Support Fund.</p>
     </section>
 
     <footer>
